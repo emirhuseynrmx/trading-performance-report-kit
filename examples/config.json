@@ -1,0 +1,19 @@
+{
+  "initial_capital": 10000,
+  "currency": "USD",
+  "trade_id_column": "trade_id",
+  "symbol_column": "symbol",
+  "side_column": "side",
+  "entry_time_column": "entry_time",
+  "exit_time_column": "exit_time",
+  "entry_price_column": "entry_price",
+  "exit_price_column": "exit_price",
+  "quantity_column": "quantity",
+  "fees_column": "fees",
+  "long_label": "long",
+  "short_label": "short",
+  "annualization_days": 252,
+  "risk_free_rate": 0.0,
+  "max_table_rows": 12,
+  "report_title": "Trading Performance Report"
+}
