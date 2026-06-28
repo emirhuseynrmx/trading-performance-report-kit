@@ -2,14 +2,16 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pandas as pd
+
 from trading_report_kit.config import ReportConfig
+from trading_report_kit.kaggle_data import build_trade_ledger_from_ohlc
 from trading_report_kit.pipeline import run_report_pipeline
-from trading_report_kit.sample_data import generate_trade_log
 
 
 def test_run_report_pipeline_writes_outputs(tmp_path: Path) -> None:
     input_path = tmp_path / "trades.csv"
-    generate_trade_log(rows=40, seed=7).to_csv(input_path, index=False)
+    build_trade_ledger_from_ohlc(ohlc_fixture(), max_trades=20).to_csv(input_path, index=False)
 
     result = run_report_pipeline(input_path, tmp_path / "out", ReportConfig())
 
@@ -25,3 +27,19 @@ def test_run_report_pipeline_writes_outputs(tmp_path: Path) -> None:
     assert result.monthly_returns_chart_path.exists()
     assert result.trade_distribution_path.exists()
     assert result.manifest_path.exists()
+
+
+def ohlc_fixture() -> pd.DataFrame:
+    dates = pd.date_range("2024-01-01", periods=140, freq="D")
+    closes = [100 + index * 0.25 + ((index % 9) - 4) * 0.4 for index in range(140)]
+    return pd.DataFrame(
+        {
+            "Date": dates.strftime("%m/%d/%Y"),
+            "Open Price": closes,
+            "High Price": [price * 1.01 for price in closes],
+            "Low Price": [price * 0.99 for price in closes],
+            "Close Price": closes,
+            "Adj Close Price": closes,
+            "Volume": [1_000_000 + index * 1000 for index in range(140)],
+        }
+    )

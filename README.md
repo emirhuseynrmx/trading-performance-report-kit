@@ -31,9 +31,12 @@ The column names can be changed in `examples/config.json`.
 
 ```bash
 pip install -e ".[dev]"
-trading-generate-sample --rows 120 --out data/sample_trades.csv
-trading-report data/sample_trades.csv --config examples/config.json --out outputs/demo
+trading-prepare-kaggle --out data/aapl_strategy_trades.csv
+trading-report data/aapl_strategy_trades.csv --config examples/config.json --out outputs/aapl_report
 ```
+
+The public sample is derived from a Kaggle AAPL OHLC dataset and converted into a closed-trade
+ledger. The report never uses future prices for prediction; it only summarizes completed trades.
 
 ## Outputs
 
