@@ -85,6 +85,7 @@ def run_report_pipeline(input_path: Path, output_dir: Path, config: ReportConfig
         drawdown_chart_path=drawdown_chart_path,
         monthly_returns_chart_path=monthly_returns_chart_path,
         trade_distribution_path=trade_distribution_path,
+        currency=config.currency,
     )
     manifest_path = write_manifest(
         {
