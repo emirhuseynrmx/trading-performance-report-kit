@@ -5,6 +5,7 @@
     "daily_equity": "sample_outputs\\demo\\daily_equity.csv",
     "monthly_returns": "sample_outputs\\demo\\monthly_returns.csv",
     "symbol_breakdown": "sample_outputs\\demo\\symbol_breakdown.csv",
+    "evidence_checks": "sample_outputs\\demo\\evidence_checks.csv",
     "metrics_report": "sample_outputs\\demo\\metrics_report.md",
     "pdf_report": "sample_outputs\\demo\\performance_report.pdf",
     "dashboard": "sample_outputs\\demo\\dashboard.png",

@@ -1,0 +1,9 @@
+check,status,evidence
+closed_trade_timestamps,pass,All exit timestamps are on or after entry timestamps.
+minimum_trade_count,pass,180 trades; configured minimum is 30.
+fee_coverage,pass,100.0% of trades include non-zero fees.
+symbol_concentration,review,Top symbol AAPL is 100.0% of trades; limit is 50.0%.
+exit_time_order,pass,Ledger is sorted by exit timestamp.
+lookahead_boundary,pass,The report summarizes closed trades only and does not train a predictive model; use at least 1 day(s) of embargo for any future walk-forward feature study.
+survivorship_bias,review,1 symbol(s) present. Confirm the source universe includes delisted or failed names when evaluating broad strategies.
+multiple_testing,review,"If this strategy was selected after many variants, report candidate count and walk-forward results before treating the performance as evidence."

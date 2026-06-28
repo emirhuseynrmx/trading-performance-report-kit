@@ -8,6 +8,12 @@
 - Max drawdown: `-5.37%`
 - Sharpe ratio: `-0.82`
 
+## Evidence Checks
+
+- Review items: `3`
+- Failed items: `0`
+- Full table: `evidence_checks.csv`
+
 ## Business Read
 
 Use the equity curve and drawdown chart together. A strategy can show positive return while still having unacceptable drawdown.

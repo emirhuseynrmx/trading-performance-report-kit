@@ -18,6 +18,7 @@ def write_pdf_report(
     metrics: PerformanceMetrics,
     monthly_returns: pd.DataFrame,
     symbol_breakdown: pd.DataFrame,
+    evidence_checks: pd.DataFrame,
     dashboard_path: Path,
     equity_curve_path: Path,
     drawdown_chart_path: Path,
@@ -57,7 +58,7 @@ def write_pdf_report(
         Spacer(1, 0.18 * inch),
         Paragraph("Evidence Checklist", styles["Heading2"]),
         _dataframe_table(
-            _evidence_checklist(metrics),
+            evidence_checks,
             font_size=8,
             wrap_text=True,
             full_width=True,
@@ -168,30 +169,3 @@ def _format_metrics(metrics: PerformanceMetrics, currency: str) -> pd.DataFrame:
     ]
     return pd.DataFrame(rows, columns=["Metric", "Value"])
 
-
-def _evidence_checklist(metrics: PerformanceMetrics) -> pd.DataFrame:
-    status = "Review" if metrics.total_trades < 30 else "Pass"
-    return pd.DataFrame(
-        [
-            {
-                "Check": "Closed-trade ledger",
-                "Status": "Pass",
-                "Note": "Report summarizes completed trades only.",
-            },
-            {
-                "Check": "Minimum sample size",
-                "Status": status,
-                "Note": "Small trade counts can overstate strategy quality.",
-            },
-            {
-                "Check": "Drawdown visibility",
-                "Status": "Pass",
-                "Note": "Equity and drawdown charts are included.",
-            },
-            {
-                "Check": "Forward-looking claims",
-                "Status": "Pass",
-                "Note": "The report does not forecast future profit.",
-            },
-        ]
-    )

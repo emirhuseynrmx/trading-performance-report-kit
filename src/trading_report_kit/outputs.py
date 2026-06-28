@@ -20,8 +20,11 @@ def write_metrics_report(
     output_path: Path,
     best_symbol: str,
     worst_symbol: str,
+    evidence_checks: pd.DataFrame,
 ) -> Path:
     data = metrics.model_dump()
+    review_count = int((evidence_checks["status"] == "review").sum())
+    fail_count = int((evidence_checks["status"] == "fail").sum())
     lines = [
         "# Trading Performance Metrics Report",
         "",
@@ -32,6 +35,12 @@ def write_metrics_report(
         f"- Profit factor: `{data['profit_factor']:.2f}`",
         f"- Max drawdown: `{data['max_drawdown_pct']:.2%}`",
         f"- Sharpe ratio: `{data['sharpe_ratio']:.2f}`",
+        "",
+        "## Evidence Checks",
+        "",
+        f"- Review items: `{review_count}`",
+        f"- Failed items: `{fail_count}`",
+        "- Full table: `evidence_checks.csv`",
         "",
         "## Business Read",
         "",

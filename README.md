@@ -46,6 +46,7 @@ trade_ledger.csv
 daily_equity.csv
 monthly_returns.csv
 symbol_breakdown.csv
+evidence_checks.csv
 metrics_report.md
 performance_report.pdf
 dashboard.png
@@ -85,6 +86,7 @@ The report includes:
 - Sharpe ratio
 - best and worst trade
 - symbol breakdown
+- evidence checks for fee coverage, sample size, timestamp order, concentration, and bias risks
 - monthly returns
 
 ## Notes

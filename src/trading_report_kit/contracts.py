@@ -43,3 +43,16 @@ def validate_monthly_returns(frame: pd.DataFrame) -> pd.DataFrame:
         strict=True,
     )
     return schema.validate(frame, lazy=True)
+
+
+def validate_evidence_checks(frame: pd.DataFrame) -> pd.DataFrame:
+    schema = pa.DataFrameSchema(
+        {
+            "check": pa.Column(str, nullable=False),
+            "status": pa.Column(str, checks=pa.Check.isin(["pass", "review", "fail"])),
+            "evidence": pa.Column(str, nullable=False),
+        },
+        coerce=True,
+        strict=True,
+    )
+    return schema.validate(frame, lazy=True)

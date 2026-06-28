@@ -20,6 +20,7 @@ def test_run_report_pipeline_writes_outputs(tmp_path: Path) -> None:
     assert result.daily_equity_path.exists()
     assert result.monthly_returns_path.exists()
     assert result.symbol_breakdown_path.exists()
+    assert result.evidence_checks_path.exists()
     assert result.pdf_report_path.exists()
     assert result.dashboard_path.exists()
     assert result.equity_curve_path.exists()
@@ -27,6 +28,9 @@ def test_run_report_pipeline_writes_outputs(tmp_path: Path) -> None:
     assert result.monthly_returns_chart_path.exists()
     assert result.trade_distribution_path.exists()
     assert result.manifest_path.exists()
+    evidence = pd.read_csv(result.evidence_checks_path)
+    assert {"check", "status", "evidence"}.issubset(evidence.columns)
+    assert "multiple_testing" in set(evidence["check"])
 
 
 def ohlc_fixture() -> pd.DataFrame:

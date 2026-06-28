@@ -24,6 +24,10 @@ class ReportConfig(BaseModel):
     short_label: str = "short"
     annualization_days: int = Field(default=252, ge=1)
     risk_free_rate: float = 0.0
+    minimum_trade_count: int = Field(default=30, ge=5)
+    minimum_fee_coverage: float = Field(default=0.9, ge=0, le=1)
+    max_symbol_trade_concentration: float = Field(default=0.5, gt=0, le=1)
+    embargo_days: int = Field(default=1, ge=0, le=30)
     max_table_rows: int = Field(default=12, ge=3, le=50)
     report_title: str = "Trading Performance Report"
     mode: Literal["trades"] = "trades"
