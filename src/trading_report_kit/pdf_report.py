@@ -44,19 +44,24 @@ def write_pdf_report(
     story = [
         Paragraph("Trading Performance Report", styles["Title"]),
         Paragraph(
-            "Executive summary: this report turns a provided closed-trade ledger into "
-            "a structured performance review. It is not a trading signal, not financial "
-            "advice, and it does not use future data to make a prediction.",
+            "Closed-trade ledger review with performance metrics, drawdown visibility, "
+            "symbol concentration, and risk checks. The report is evidence, not a "
+            "trading signal or financial advice.",
             styles["BodyText"],
         ),
         Spacer(1, 0.15 * inch),
-        Image(str(dashboard_path), width=6.5 * inch, height=4.0 * inch),
+        Image(str(dashboard_path), width=6.7 * inch, height=3.9 * inch),
         Spacer(1, 0.18 * inch),
         Paragraph("Core Metrics", styles["Heading2"]),
-        _dataframe_table(_format_metrics(metrics, currency)),
+        _dataframe_table(_format_metrics(metrics, currency), full_width=True),
         Spacer(1, 0.18 * inch),
         Paragraph("Evidence Checklist", styles["Heading2"]),
-        _dataframe_table(_evidence_checklist(metrics), font_size=8, wrap_text=True),
+        _dataframe_table(
+            _evidence_checklist(metrics),
+            font_size=8,
+            wrap_text=True,
+            full_width=True,
+        ),
         Spacer(1, 0.18 * inch),
         Paragraph("Symbol Breakdown", styles["Heading2"]),
         _dataframe_table(symbol_breakdown.head(10)),
@@ -101,6 +106,7 @@ def _dataframe_table(
     *,
     font_size: int = 7,
     wrap_text: bool = False,
+    full_width: bool = False,
 ) -> Table:
     display = frame.copy()
     for column in display.columns:
@@ -118,7 +124,13 @@ def _dataframe_table(
     else:
         rows = [display.columns.tolist()]
         rows.extend(display.astype(str).values.tolist())
-    table = Table(rows, repeatRows=1)
+    col_widths = None
+    if full_width:
+        if len(display.columns) == 2:
+            col_widths = [2.2 * inch, 4.2 * inch]
+        else:
+            col_widths = [6.4 * inch / len(display.columns)] * len(display.columns)
+    table = Table(rows, repeatRows=1, colWidths=col_widths, hAlign="LEFT")
     table.setStyle(
         TableStyle(
             [

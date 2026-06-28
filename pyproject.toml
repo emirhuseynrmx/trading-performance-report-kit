@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "trading-performance-report-kit"
 version = "0.1.0"
-description = "Trade CSV to client-ready trading performance reports with metrics, charts, and PDF output."
+description = "Validated trade-ledger analysis with metrics, charts, risk checks, and PDF output."
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
 license = { text = "MIT" }

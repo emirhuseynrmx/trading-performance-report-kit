@@ -8,6 +8,7 @@ import pandas as pd
 matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch
 
 
 def write_equity_curve(daily_equity: pd.DataFrame, path: Path) -> Path:
@@ -80,19 +81,111 @@ def write_trade_distribution_chart(ledger: pd.DataFrame, path: Path) -> Path:
 
 def write_dashboard_image(metrics: dict[str, float], path: Path) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
-    fig, axes = plt.subplots(2, 2, figsize=(10, 6.2))
-    fig.suptitle("Trading Performance Snapshot", fontsize=18, fontweight="bold")
+    fig, ax = plt.subplots(figsize=(11, 6.4))
+    fig.patch.set_facecolor("#0d1117")
+    ax.set_facecolor("#0d1117")
+    ax.axis("off")
+    ax.text(
+        0.04,
+        0.92,
+        "Trading Performance Evidence",
+        color="#f0f6fc",
+        fontsize=22,
+        fontweight="bold",
+        transform=ax.transAxes,
+    )
+    ax.text(
+        0.04,
+        0.86,
+        "Closed-trade ledger review with drawdown, expectancy, and sample-size checks.",
+        color="#8b949e",
+        fontsize=12,
+        transform=ax.transAxes,
+    )
     cards = [
-        ("Net PnL", f"{metrics['net_pnl']:.2f}"),
-        ("Return", f"{metrics['return_pct']:.2%}"),
-        ("Win Rate", f"{metrics['win_rate']:.2%}"),
-        ("Max Drawdown", f"{metrics['max_drawdown_pct']:.2%}"),
+        ("Net PnL", f"{metrics['net_pnl']:,.2f}", metrics["net_pnl"]),
+        ("Return", f"{metrics['return_pct']:.2%}", metrics["return_pct"]),
+        ("Win Rate", f"{metrics['win_rate']:.2%}", metrics["win_rate"] - 0.5),
+        ("Max Drawdown", f"{metrics['max_drawdown_pct']:.2%}", metrics["max_drawdown_pct"]),
     ]
-    for ax, (label, value) in zip(axes.flatten(), cards, strict=True):
-        ax.axis("off")
-        ax.text(0.05, 0.62, label, fontsize=13, color="#57606a")
-        ax.text(0.05, 0.32, value, fontsize=30, fontweight="bold")
-    fig.tight_layout(rect=(0, 0, 1, 0.92))
+    positions = [(0.04, 0.58), (0.28, 0.58), (0.52, 0.58), (0.76, 0.58)]
+    for (label, value, score), (x_pos, y_pos) in zip(cards, positions, strict=True):
+        color = "#3fb950" if score >= 0 else "#f85149"
+        card = FancyBboxPatch(
+            (x_pos, y_pos),
+            0.20,
+            0.20,
+            boxstyle="round,pad=0.016,rounding_size=0.018",
+            linewidth=0.8,
+            edgecolor="#30363d",
+            facecolor="#161b22",
+            transform=ax.transAxes,
+        )
+        ax.add_patch(card)
+        ax.text(
+            x_pos + 0.02,
+            y_pos + 0.135,
+            label.upper(),
+            color="#8b949e",
+            fontsize=9,
+            fontweight="bold",
+            transform=ax.transAxes,
+        )
+        ax.text(
+            x_pos + 0.02,
+            y_pos + 0.055,
+            value,
+            color=color,
+            fontsize=21,
+            fontweight="bold",
+            transform=ax.transAxes,
+        )
+
+    checks = [
+        ("Ledger integrity", "completed trades only"),
+        ("Lookahead posture", "uses exit-time ordering"),
+        ("Risk visibility", "drawdown and distribution included"),
+        ("Claim boundary", "no profit forecast"),
+    ]
+    ax.text(
+        0.04,
+        0.43,
+        "Evidence checks",
+        color="#f0f6fc",
+        fontsize=15,
+        fontweight="bold",
+        transform=ax.transAxes,
+    )
+    for index, (label, detail) in enumerate(checks):
+        y_pos = 0.34 - index * 0.065
+        ax.text(
+            0.06,
+            y_pos,
+            label,
+            color="#f0f6fc",
+            fontsize=11,
+            fontweight="bold",
+            transform=ax.transAxes,
+        )
+        ax.text(0.28, y_pos, detail, color="#8b949e", fontsize=11, transform=ax.transAxes)
+        ax.plot(
+            [0.04, 0.94],
+            [y_pos - 0.025, y_pos - 0.025],
+            color="#21262d",
+            linewidth=0.8,
+            transform=ax.transAxes,
+        )
+
+    ax.text(
+        0.04,
+        0.05,
+        "Interpretation: the report is an evidence layer, not a trading signal.",
+        color="#d29922",
+        fontsize=12,
+        fontstyle="italic",
+        transform=ax.transAxes,
+    )
+    fig.tight_layout()
     fig.savefig(path, dpi=170)
     plt.close(fig)
     return path

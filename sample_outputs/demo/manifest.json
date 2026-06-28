@@ -1,16 +1,16 @@
 {
   "files": {
-    "performance_metrics": "outputs\\aapl_report\\performance_metrics.csv",
-    "trade_ledger": "outputs\\aapl_report\\trade_ledger.csv",
-    "daily_equity": "outputs\\aapl_report\\daily_equity.csv",
-    "monthly_returns": "outputs\\aapl_report\\monthly_returns.csv",
-    "symbol_breakdown": "outputs\\aapl_report\\symbol_breakdown.csv",
-    "metrics_report": "outputs\\aapl_report\\metrics_report.md",
-    "pdf_report": "outputs\\aapl_report\\performance_report.pdf",
-    "dashboard": "outputs\\aapl_report\\dashboard.png",
-    "equity_curve": "outputs\\aapl_report\\equity_curve.png",
-    "drawdown_chart": "outputs\\aapl_report\\drawdown.png",
-    "monthly_returns_chart": "outputs\\aapl_report\\monthly_returns.png",
-    "trade_distribution": "outputs\\aapl_report\\trade_distribution.png"
+    "performance_metrics": "sample_outputs\\demo\\performance_metrics.csv",
+    "trade_ledger": "sample_outputs\\demo\\trade_ledger.csv",
+    "daily_equity": "sample_outputs\\demo\\daily_equity.csv",
+    "monthly_returns": "sample_outputs\\demo\\monthly_returns.csv",
+    "symbol_breakdown": "sample_outputs\\demo\\symbol_breakdown.csv",
+    "metrics_report": "sample_outputs\\demo\\metrics_report.md",
+    "pdf_report": "sample_outputs\\demo\\performance_report.pdf",
+    "dashboard": "sample_outputs\\demo\\dashboard.png",
+    "equity_curve": "sample_outputs\\demo\\equity_curve.png",
+    "drawdown_chart": "sample_outputs\\demo\\drawdown.png",
+    "monthly_returns_chart": "sample_outputs\\demo\\monthly_returns.png",
+    "trade_distribution": "sample_outputs\\demo\\trade_distribution.png"
   }
 }
