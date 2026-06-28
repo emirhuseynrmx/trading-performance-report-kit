@@ -38,7 +38,7 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--cov=trading_report_kit --cov-report=term-missing"
+addopts = "--basetemp=.pytest_tmp --cov=trading_report_kit --cov-report=term-missing"
 
 [tool.ruff]
 line-length = 100

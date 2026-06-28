@@ -57,6 +57,8 @@ Example outputs are in `sample_outputs/demo/`.
 
 ## Preview
 
+![Sample trading performance PDF report](docs/assets/sample-trading-report-preview.png)
+
 ![Dashboard](docs/assets/dashboard.png)
 
 ![Equity curve](docs/assets/equity_curve.png)
