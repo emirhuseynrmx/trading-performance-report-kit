@@ -53,5 +53,5 @@ def build_monthly_returns(daily_equity: pd.DataFrame, config: ReportConfig) -> p
     )
     output["monthly_return_pct"] = (
         output["end_equity"] - output["start_equity"]
-    ) / config.initial_capital
+    ) / output["start_equity"]
     return output
