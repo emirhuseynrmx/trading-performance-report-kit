@@ -1,0 +1,15 @@
+metric,value
+total_trades,180.0000
+net_pnl,-314.4428
+return_pct,-0.0314
+win_rate,0.4778
+profit_factor,0.8715
+expectancy,-1.7469
+average_win,24.8074
+average_loss,-26.0413
+payoff_ratio,0.9526
+max_drawdown,-537.8897
+max_drawdown_pct,-0.0537
+sharpe_ratio,-0.8169
+best_trade,109.0279
+worst_trade,-105.6241

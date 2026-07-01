@@ -1,0 +1,18 @@
+{
+  "files": {
+    "performance_metrics": "outputs\\report\\performance_metrics.csv",
+    "trade_ledger": "outputs\\report\\trade_ledger.csv",
+    "daily_equity": "outputs\\report\\daily_equity.csv",
+    "monthly_returns": "outputs\\report\\monthly_returns.csv",
+    "symbol_breakdown": "outputs\\report\\symbol_breakdown.csv",
+    "evidence_checks": "outputs\\report\\evidence_checks.csv",
+    "metrics_report": "outputs\\report\\metrics_report.md",
+    "pdf_report": "outputs\\report\\performance_report.pdf",
+    "typst_report": "outputs\\report\\performance_report.typ",
+    "dashboard": "outputs\\report\\dashboard.png",
+    "equity_curve": "outputs\\report\\equity_curve.png",
+    "drawdown_chart": "outputs\\report\\drawdown.png",
+    "monthly_returns_chart": "outputs\\report\\monthly_returns.png",
+    "trade_distribution": "outputs\\report\\trade_distribution.png"
+  }
+}

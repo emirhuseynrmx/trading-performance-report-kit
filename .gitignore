@@ -11,3 +11,12 @@ build/
 *.egg-info/
 outputs/*
 !outputs/.gitkeep
+!outputs/report/performance_report.pdf
+!outputs/report/performance_report.typ
+!outputs/report/performance_metrics.csv
+!outputs/report/daily_equity.csv
+!outputs/report/monthly_returns.csv
+!outputs/report/manifest.json
+!outputs/report/metrics_report.md
+!outputs/report/dashboard.png
+!outputs/report/equity_curve.png
