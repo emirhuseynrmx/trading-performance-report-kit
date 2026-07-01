@@ -110,6 +110,7 @@ def run_report_pipeline(input_path: Path, output_dir: Path, config: ReportConfig
             "evidence_checks": evidence_checks_path,
             "metrics_report": metrics_report_path,
             "pdf_report": pdf_report_path,
+            "typst_report": pdf_report_path.with_suffix(".typ"),
             "dashboard": dashboard_path,
             "equity_curve": equity_curve_path,
             "drawdown_chart": drawdown_chart_path,
