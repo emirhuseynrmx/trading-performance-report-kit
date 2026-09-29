@@ -1,4 +1,9 @@
-# Trading Performance Report Kit
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.svg">
+    <img src="assets/logo-light.svg" alt="Trading Performance Report Kit" width="620">
+  </picture>
+</h1>
 
 [![CI](https://github.com/emirhuseynrmx/trading-performance-report-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/emirhuseynrmx/trading-performance-report-kit/actions)
 [![Python](https://img.shields.io/badge/python-3.10--3.12-blue)](https://www.python.org/)
